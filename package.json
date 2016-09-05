@@ -1,7 +1,7 @@
 {
-  "name": "eslint-loader",
-  "version": "1.5.0",
-  "description": "eslint loader (for webpack)",
+  "name": "eslint-return-loader",
+  "version": "1.0.0",
+  "description": "webpack loader that returns the result of eslint",
   "keywords": [
     "lint",
     "linter",
@@ -9,31 +9,35 @@
     "loader",
     "webpack"
   ],
-  "repository": "https://github.com/MoOx/eslint-loader.git",
-  "author": "Maxime Thirouin",
+  "repository": "https://github.com/kesne/eslint-return-loader.git",
+  "author": "Jordan Gensler",
   "license": "MIT",
   "files": [
-    "index.js"
+    "lib/index.js"
   ],
+  "main": "lib/index.js",
   "peerDependencies": {
     "eslint": ">=1.6.0 <4.0.0"
   },
   "dependencies": {
-    "find-cache-dir": "^0.1.1",
-    "loader-utils": "^0.2.7",
-    "object-assign": "^4.0.1"
+    "loader-utils": "^0.2.7"
   },
   "devDependencies": {
-    "eslint": "^3.0.0",
-    "eslint-friendly-formatter": "^2.0.4",
-    "npmpub": "^3.0.1",
+    "babel-cli": "^6.14.0",
+    "babel-plugin-transform-object-rest-spread": "^6.8.0",
+    "babel-preset-airbnb": "^2.0.0",
+    "babel-tape-runner": "^2.0.1",
+    "eslint": "^3.4.0",
+    "eslint-config-airbnb-base": "^5.0.3",
+    "eslint-plugin-import": "^1.14.0",
     "tape": "^4.0.0",
     "webpack": "^1.8.4"
   },
   "scripts": {
+    "build": "babel src --out-dir lib",
     "lint": "eslint .",
-    "tape": "tape test/*.js",
+    "tape": "babel-tape-runner test/index.js",
     "test": "npm run lint && npm run tape",
-    "release": "npmpub"
+    "prepublish": "npm run build"
   }
 }
